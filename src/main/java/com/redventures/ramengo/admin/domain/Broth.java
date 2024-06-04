@@ -1,9 +1,16 @@
 package com.redventures.ramengo.admin.domain;
 
-import java.math.BigDecimal;
+import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+@Entity
+@Table(name = "broths")
 public class Broth {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
     private String imageInactive;
     private String imageActive;
     private String name;
@@ -13,12 +20,29 @@ public class Broth {
     public Broth() {
     }
 
+    public Broth(Long id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
+        this.id = id;
+        this.imageInactive = imageInactive;
+        this.imageActive = imageActive;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
     public Broth(String imageInactive, String imageActive, String name, String description, BigDecimal price) {
         this.imageInactive = imageInactive;
         this.imageActive = imageActive;
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getImageInactive() {

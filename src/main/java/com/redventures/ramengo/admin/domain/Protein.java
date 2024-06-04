@@ -1,9 +1,16 @@
 package com.redventures.ramengo.admin.domain;
 
-import java.math.BigDecimal;
+import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+@Entity
+@Table(name = "proteins")
 public class Protein {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
     private String imageInactive;
     private String imageActive;
     private String name;
@@ -13,12 +20,29 @@ public class Protein {
     public Protein() {
     }
 
+    public Protein(Long id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
+        this.id = id;
+        this.imageInactive = imageInactive;
+        this.imageActive = imageActive;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
     public Protein(String imageInactive, String imageActive, String name, String description, BigDecimal price) {
         this.imageInactive = imageInactive;
         this.imageActive = imageActive;
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getImageInactive() {

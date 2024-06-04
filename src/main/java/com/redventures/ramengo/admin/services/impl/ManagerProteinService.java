@@ -2,6 +2,7 @@ package com.redventures.ramengo.admin.services.impl;
 
 import com.google.gson.Gson;
 import com.redventures.ramengo.admin.domain.Protein;
+import com.redventures.ramengo.admin.repository.ProteinRepository;
 import com.redventures.ramengo.admin.services.IManagerService;
 import com.redventures.ramengo.admin.services.aws.AmazonS3Service;
 import com.redventures.ramengo.admin.services.aws.AwsSnsService;
@@ -33,13 +34,16 @@ public class ManagerProteinService implements IManagerService {
     @Autowired
     private AwsSnsService awsSnsService;
 
+    @Autowired
+    private ProteinRepository proteinRepository;
+
     @Override
     public ResponseEntity save(String name, MultipartFile imageActive, MultipartFile imageInactive, String description, BigDecimal price) {
         String uploadImageActive = amazonS3Service.uploadFile(imageActive);
         String uploadImageInactive = amazonS3Service.uploadFile(imageInactive);
         Protein protein = populateProtein(name, uploadImageActive, uploadImageInactive, description, price);
-        ResponseEntity response = callRamengoToSave(protein);
-        return response;
+        Protein save = proteinRepository.save(protein);
+        return ResponseEntity.ok(save);
     }
 
     @Override

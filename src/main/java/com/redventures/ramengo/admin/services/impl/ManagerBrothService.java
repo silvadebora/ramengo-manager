@@ -2,6 +2,7 @@ package com.redventures.ramengo.admin.services.impl;
 
 import com.google.gson.Gson;
 import com.redventures.ramengo.admin.domain.Broth;
+import com.redventures.ramengo.admin.repository.BrothRepository;
 import com.redventures.ramengo.admin.services.IManagerService;
 import com.redventures.ramengo.admin.services.aws.AmazonS3Service;
 import com.redventures.ramengo.admin.services.aws.AwsSnsService;
@@ -33,13 +34,16 @@ public class ManagerBrothService implements IManagerService {
     @Autowired
     private AwsSnsService awsSnsService;
 
+    @Autowired
+    private BrothRepository brothRepository;
+
     @Override
     public ResponseEntity save(String name, MultipartFile imageActive, MultipartFile imageInactive, String description, BigDecimal price) {
         String uploadImageActive = amazonS3Service.uploadFile(imageActive);
         String uploadImageInactive = amazonS3Service.uploadFile(imageInactive);
         Broth broth = populateBroth(name, uploadImageActive, uploadImageInactive, description, price);
-        ResponseEntity response = callRamengoToSave(broth);
-        return response;
+        Broth save = brothRepository.save(broth);
+        return ResponseEntity.ok(save);
     }
 
     @Override
