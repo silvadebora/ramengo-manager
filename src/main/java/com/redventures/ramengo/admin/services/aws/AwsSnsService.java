@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.redventures.ramengo.admin.domain.Broth;
 import com.redventures.ramengo.admin.domain.Protein;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ public class AwsSnsService {
     private Topic brothTopic;
     private Topic proteinTopic;
     private final ObjectMapper mapper = new ObjectMapper();
+    private Logger LOG = LoggerFactory.getLogger(AwsSnsService.class);
+
 
     public AwsSnsService(AmazonSNS snsClient, @Qualifier("broth-catalog") Topic brothTopic,
                          @Qualifier("protein-catalog") Topic proteinTopic) {
@@ -30,6 +34,7 @@ public class AwsSnsService {
                 .withTopicArn(topic.getTopicArn())
                 .withMessage(message);
         snsClient.publish(publishRequest);
+        LOG.info("Send " + message);
     }
 
     public void publishBroth(Broth broth){
