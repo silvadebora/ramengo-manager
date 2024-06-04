@@ -27,7 +27,7 @@ public class ManagerBrothService implements IManagerService {
     @Value("${api.key}")
     private String apiKey;
 
-    @Value("${api.url}")
+    @Value("${api.broth.url}")
     private String apiUrl;
 
     @Autowired
@@ -49,10 +49,9 @@ public class ManagerBrothService implements IManagerService {
         Gson gson = new Gson();
         String json = gson.toJson(object);
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
-        String url = apiUrl + "/broths";
         try{
             ResponseEntity response = restTemplate.exchange(
-                    url, HttpMethod.POST, entity, ResponseEntity.class);
+                    apiUrl, HttpMethod.POST, entity, ResponseEntity.class);
             return response;
         } catch(RestClientException e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
