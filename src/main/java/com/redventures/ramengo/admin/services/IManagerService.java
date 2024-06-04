@@ -11,5 +11,4 @@ public interface IManagerService {
               MultipartFile imageInactive, String description,
               BigDecimal price);
 
-    ResponseEntity callRamengoToSave(Object object);
 }
