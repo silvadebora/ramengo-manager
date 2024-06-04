@@ -22,8 +22,8 @@ public class BrothController {
                                @RequestPart("imageInactive") MultipartFile imageInactive,
                                @RequestParam("description") String description,
                                @RequestParam("price") BigDecimal price){
-        managerBrothService.save(name, imageActive, imageInactive, description, price);
-        return ResponseEntity.ok().body(HttpStatus.CREATED);
+        ResponseEntity save = managerBrothService.save(name, imageActive, imageInactive, description, price);
+        return ResponseEntity.ok(save);
     }
 
 }

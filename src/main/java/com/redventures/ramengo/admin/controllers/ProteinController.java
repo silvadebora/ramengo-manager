@@ -22,7 +22,7 @@ public class ProteinController {
                                @RequestPart("imageInactive") MultipartFile imageInactive,
                                @RequestParam("description") String description,
                                @RequestParam("price") BigDecimal price){
-        managerProteinService.save(name, imageActive, imageInactive, description, price);
-        return ResponseEntity.ok().body(HttpStatus.CREATED);
+        ResponseEntity save = managerProteinService.save(name, imageActive, imageInactive, description, price);
+        return ResponseEntity.ok(save);
     }
 }
