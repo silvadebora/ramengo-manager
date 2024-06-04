@@ -4,19 +4,21 @@ import java.math.BigDecimal;
 
 public class Protein {
 
-    private String id;
     private String imageInactive;
     private String imageActive;
     private String name;
     private String description;
     private BigDecimal price;
 
-    public String getId() {
-        return id;
+    public Protein() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Protein(String imageInactive, String imageActive, String name, String description, BigDecimal price) {
+        this.imageInactive = imageInactive;
+        this.imageActive = imageActive;
+        this.name = name;
+        this.description = description;
+        this.price = price;
     }
 
     public String getImageInactive() {
