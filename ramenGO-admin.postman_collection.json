@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "d315ef5e-1866-45bb-9297-2eb1031c7217",
+		"name": "ramenGO-admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23603707"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"lastName\",\r\n    \"lastName\": \"firstName\",\r\n    \"email\": \"first.com\",\r\n    \"password\": \"ola.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://ramengo-manager.onrender.com/manager/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ola.com\",\r\n    \"password\": \"ola.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://ramengo-manager.onrender.com/manager/login"
+			},
+			"response": []
+		},
+		{
+			"name": "broth",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6Im9sYS5jb20iLCJleHAiOjE3NDM0NTkwNDN9.4gbXWs8kaQe0Qh3MSjI9lirsbLshJ98d5wEt2zPTwGY"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageActive",
+							"type": "file",
+							"src": "/C:/Users/Debora/Downloads/broth.jpg"
+						},
+						{
+							"key": "imageInactive",
+							"type": "file",
+							"src": "/C:/Users/Debora/Downloads/broth.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ramengo-manager.onrender.com/manager/broths?name=salt&description=salt&price=10",
+					"protocol": "https",
+					"host": [
+						"ramengo-manager",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"manager",
+						"broths"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "salt"
+						},
+						{
+							"key": "description",
+							"value": "salt"
+						},
+						{
+							"key": "price",
+							"value": "10"
+						},
+						{
+							"key": "imageActive",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "proteins",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6Im9sYS5jb20iLCJleHAiOjE3NDM0NTkwNDN9.4gbXWs8kaQe0Qh3MSjI9lirsbLshJ98d5wEt2zPTwGY"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageActive",
+							"type": "file",
+							"src": "/C:/Users/Debora/Downloads/protein.jpg"
+						},
+						{
+							"key": "imageInactive",
+							"type": "file",
+							"src": "/C:/Users/Debora/Downloads/protein.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ramengo-manager.onrender.com/manager/proteins?name=salt&description=salt&price=10",
+					"protocol": "https",
+					"host": [
+						"ramengo-manager",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"manager",
+						"proteins"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "salt"
+						},
+						{
+							"key": "description",
+							"value": "salt"
+						},
+						{
+							"key": "price",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
